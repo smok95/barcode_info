@@ -1,6 +1,6 @@
 name: barcode_info
 description: A new Flutter package project.
-version: 0.0.1
+version: 0.0.2
 author: Kim, Jong-kook <kjk15881588@gmail.com>
 homepage: https://github.com/smok95/barcode_info
 
@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localized_country_name: ^0.0.1
+  tuple: ^1.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'ean13_info.dart';
+import 'qrcode_info.dart';
 import 'upca_info.dart';
 
 export 'ean13_info.dart';
@@ -32,9 +33,9 @@ abstract class BarcodeInfo {
     } else if (format == 'UPC_A') {
       return await UPCAInfo.create(code);
     } else if (format == 'QR_CODE') {
-      return QrCodeInfo(code);
+      return await QrCodeInfo.create(code);
     } else if (format == 'DATA_MATRIX') {
-      return DatamatrixInfo(code);
+      return DataMatrixInfo(code);
     } else if (format == 'AZTEC') {
       return AxtecInfo(code);
     } else if (format == 'CODABAR') {
@@ -82,12 +83,8 @@ class BarcodeUnknown extends BarcodeInfo {
   final String formatText;
 }
 
-class QrCodeInfo extends BarcodeInfo {
-  QrCodeInfo(String code) : super(BarcodeFormat.qrCode, code);
-}
-
-class DatamatrixInfo extends BarcodeInfo {
-  DatamatrixInfo(String code) : super(BarcodeFormat.dataMatrix, code);
+class DataMatrixInfo extends BarcodeInfo {
+  DataMatrixInfo(String code) : super(BarcodeFormat.dataMatrix, code);
 }
 
 class AxtecInfo extends BarcodeInfo {
