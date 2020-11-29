@@ -1,3 +1,7 @@
+## 0.0.4 - 2020-11-29
+### Added
+- Support BarcodeFormat string for flutter_barcode_reader package.
+
 ## 0.0.3 - 2020-11-29
 ### Fixed
 - bug fix

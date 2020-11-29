@@ -27,36 +27,56 @@ enum BarcodeFormat {
 abstract class BarcodeInfo {
   BarcodeInfo(this.format, this.code);
 
-  static Future<BarcodeInfo> create(String format, String code) async {
-    if (format == 'EAN_13') {
-      return await EAN13Info.create(code);
-    } else if (format == 'UPC_A') {
-      return await UPCAInfo.create(code);
-    } else if (format == 'QR_CODE') {
-      return await QrCodeInfo.create(code);
-    } else if (format == 'DATA_MATRIX') {
-      return DataMatrixInfo(code);
-    } else if (format == 'AZTEC') {
+  /// Create BarcodeInfo
+  ///
+  /// [format] format string (ignore case)
+  /// * BarcodeFormat string list
+  ///   - aztec       : 'AZTEC'
+  ///   - codabar     : 'CODABAR'
+  ///   - code128     : 'CODE_128' or 'CODE128'
+  ///   - code39      : 'CODE_39' or 'CODE39'
+  ///   - code93      : 'CODE_93' or 'CODE93'
+  ///   - dataMatrix  : 'DATA_MATRIX' or 'DATAMATRIX'
+  ///   - ean8        : 'EAN_8' or 'EAN8'
+  ///   - ean13       : 'EAN_13' or 'EAN13'
+  ///   - itf         : 'ITF' or 'INTERLEAVED2OF5'
+  ///   - maxicode    : 'MAXICODE'
+  ///   - pdf417      : 'PDF_417' or 'PDF417'
+  ///   - qrCode      : 'QR_CODE' or 'QR'
+  ///   - rss14       : 'RSS_14' or 'RSS14'
+  ///   - upcA        : 'UPC_A' or 'UPCA'
+  ///   - upcE        : 'UPC_E' or 'UPCE'
+  static Future<BarcodeInfo> create(final String format, String code) async {
+    final fmt = format.toUpperCase();
+    if (fmt == 'AZTEC') {
       return AxtecInfo(code);
-    } else if (format == 'CODABAR') {
+    } else if (fmt == 'CODABAR') {
       return CodabarInfo(code);
-    } else if (format == 'CODE_128') {
+    } else if (fmt == 'CODE_128' || fmt == 'CODE128') {
       return Code128Info(code);
-    } else if (format == 'CODE_39') {
+    } else if (fmt == 'CODE_39' || fmt == 'CODE39') {
       return Code39Info(code);
-    } else if (format == 'CODE_93') {
+    } else if (fmt == 'CODE_93' || fmt == 'CODE93') {
       return Code93Info(code);
-    } else if (format == 'EAN_8') {
+    } else if (fmt == 'DATA_MATRIX' || fmt == 'DATAMATRIX') {
+      return DataMatrixInfo(code);
+    } else if (fmt == 'EAN_8' || fmt == 'EAN8') {
       return Ean8Info(code);
-    } else if (format == 'ITF') {
+    } else if (fmt == 'EAN_13' || fmt == 'EAN13') {
+      return await EAN13Info.create(code);
+    } else if (fmt == 'ITF' || fmt == 'INTERLEAVED2OF5') {
       return ItfInfo(code);
-    } else if (format == 'MAXICODE') {
+    } else if (fmt == 'MAXICODE') {
       return MaxicodeInfo(code);
-    } else if (format == 'PDF_417') {
+    } else if (fmt == 'PDF_417' || fmt == 'PDF417') {
       return Pdf417Info(code);
-    } else if (format == 'RSS_14') {
+    } else if (fmt == 'QR_CODE' || fmt == 'QR') {
+      return await QrCodeInfo.create(code);
+    } else if (fmt == 'RSS_14' || fmt == 'RSS14') {
       return Rss14Info(code);
-    } else if (format == 'UPC_E') {
+    } else if (fmt == 'UPC_A' || fmt == 'UPCA') {
+      return await UPCAInfo.create(code);
+    } else if (fmt == 'UPC_E' || fmt == 'UPCE') {
       return UPCEInfo(code);
     } else {
       return BarcodeUnknown(code, format);
