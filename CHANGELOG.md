@@ -1,3 +1,7 @@
+## 0.0.3 - 2020-11-29
+### Fixed
+- bug fix
+
 ## 0.0.2 - 2020-11-29
 ### Added
 - Lotto6/45 QRCode parser
