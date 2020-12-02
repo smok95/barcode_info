@@ -1,3 +1,7 @@
+## 0.0.5 - 2020-12-02
+### Added
+- add BarcodeView widget
+
 ## 0.0.4 - 2020-11-29
 ### Added
 - Support BarcodeFormat string for flutter_barcode_reader package.
