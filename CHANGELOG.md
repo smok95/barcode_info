@@ -1,3 +1,9 @@
+
+## 0.0.6 - 2020-12-09
+### Added
+- add BarcodeInfo.toString()
+- add BarCodeInfo.fromString()
+
 ## 0.0.5 - 2020-12-02
 ### Added
 - add BarcodeView widget

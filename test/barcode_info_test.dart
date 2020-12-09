@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:barcode_info/barcode_info.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   test('로또6/45 QRCode parsing', () async {
     const code =
         'http://m.dhlottery.co.kr/?v=0936m041720353943q071215303244m071113171829q010222253142m0414182731421050908394';
@@ -29,5 +30,14 @@ void main() {
     expect(lottocode.games[4].item2, equals([4, 14, 18, 27, 31, 42]));
 
     expect(lottocode.trNumber, 1050908394);
+  });
+
+  test('BarcodeInfo.toString() <-> BarcodeInfo.fromString() test', () async {
+    const code = '12344567';
+    final BarcodeInfo barcode = await BarcodeInfo.create('ean8', code);
+    expect(barcode is Ean8Info, true);
+    expect(barcode.toString(), 'ean8,12344567');
+    final newBarcode = BarcodeInfo.fromString(barcode.toString());
+    expect(newBarcode is Ean8Info, true);
   });
 }

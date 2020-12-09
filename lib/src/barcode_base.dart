@@ -89,11 +89,31 @@ abstract class BarcodeInfo {
     ///  RSS_EXPANDED, UPC_EAN_EXTENSION
   }
 
+  /// string format => 'format,code'
+  /// example:
+  ///   'ean13,8801051262995'
+  static Future<BarcodeInfo> fromString(String value) async {
+    if (value == null || value.isEmpty) return null;
+
+    final idx = value.indexOf(',');
+    if (idx <= 0 || idx >= value.length - 1) return null;
+
+    final format = value.substring(0, idx);
+    final code = value.substring(idx + 1);
+
+    return create(format, code);
+  }
+
   /// BarcodeFormat
   final BarcodeFormat format;
 
   /// Barcode value
   final String code;
+
+  @override
+  String toString() {
+    return format.toString().split('.').last + ',' + code;
+  }
 }
 
 class BarcodeUnknown extends BarcodeInfo {
