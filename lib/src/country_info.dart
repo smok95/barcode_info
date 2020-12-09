@@ -1,3 +1,5 @@
+import 'package:flutter_localized_country_name/flutter_localized_country_name.dart';
+
 class CountryInfo {
   CountryInfo(this.code, this.name);
 
@@ -7,4 +9,10 @@ class CountryInfo {
 
   /// country name
   final String name;
+
+  static Future<CountryInfo> create(String countryCode) async {
+    final name = await FlutterLocalizedCountryName.getLocalizedCountryName(
+        countryCode: countryCode);
+    return CountryInfo(countryCode, name);
+  }
 }

@@ -1,37 +1,24 @@
-import 'package:flutter_localized_country_name/flutter_localized_country_name.dart';
-
 import 'barcode_base.dart';
-import 'country_info.dart';
 
 class EAN13Info extends BarcodeInfo {
-  EAN13Info(String code, this.prefix, {this.countries})
+  EAN13Info(String code, this.prefix, {this.countryCodes})
       : super(BarcodeFormat.ean13, code);
 
-  static Future<EAN13Info> create(String code) async {
+  factory EAN13Info.fromCode(String code) {
     final prefix = code.substring(0, 3);
     final countryCodes = countriesFromGS1Prefix(prefix);
 
-    List<CountryInfo> countries;
-    if (countryCodes != null) {
-      countries = await Future.wait(countryCodes.map((countryCode) async {
-        final name = await FlutterLocalizedCountryName.getLocalizedCountryName(
-            countryCode: countryCode);
-        return CountryInfo(countryCode, name);
-      }).toList());
-    }
-
-    return EAN13Info(code, prefix, countries: countries);
+    return EAN13Info(code, prefix, countryCodes: countryCodes);
   }
 
   /// GS1 prefix
   final String prefix;
-
-  final List<CountryInfo> countries;
+  final Set<String> countryCodes;
 }
 
 /// [GS1 Company Prefix](https://www.gs1.org/standards/id-keys/company-prefix)
 /// https://en.wikipedia.org/wiki/List_of_GS1_country_codes
-List<String> countriesFromGS1Prefix(final String prefix) {
+Set<String> countriesFromGS1Prefix(final String prefix) {
   if (prefix == null || prefix.length != 3) return null;
 
   /// link : [https://en.wikipedia.org/wiki/List_of_GS1_country_codes]
@@ -51,7 +38,7 @@ List<String> countriesFromGS1Prefix(final String prefix) {
   /// 1. wiki기준으로 작성
   /// 2. 국가가 2개 이상인 경우 gs1페이지 기준으로 1개 국가만 설정
   /// 3. gs1 page도 2개 국가 이상이면 그대로 설정
-  List<String> countries = List<String>();
+  final countries = Set<String>();
 
   if (0 <= code && code <= 19) {
     countries.addAll(['US']); //, 'CA']);

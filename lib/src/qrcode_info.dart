@@ -5,7 +5,7 @@ import 'barcode_base.dart';
 class QrCodeInfo extends BarcodeInfo {
   QrCodeInfo(String code) : super(BarcodeFormat.qrCode, code);
 
-  static Future<QrCodeInfo> create(String code) async {
+  factory QrCodeInfo.fromCode(String code) {
     var info = Lotto645QrCodeInfo.tryParse(code);
     if (info != null) return info;
     return QrCodeInfo(code);

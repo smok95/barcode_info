@@ -46,7 +46,7 @@ abstract class BarcodeInfo {
   ///   - rss14       : 'RSS_14' or 'RSS14'
   ///   - upcA        : 'UPC_A' or 'UPCA'
   ///   - upcE        : 'UPC_E' or 'UPCE'
-  static Future<BarcodeInfo> create(final String format, String code) async {
+  static BarcodeInfo create(final String format, String code) {
     final fmt = format.toUpperCase();
     if (fmt == 'AZTEC') {
       return AxtecInfo(code);
@@ -63,7 +63,7 @@ abstract class BarcodeInfo {
     } else if (fmt == 'EAN_8' || fmt == 'EAN8') {
       return Ean8Info(code);
     } else if (fmt == 'EAN_13' || fmt == 'EAN13') {
-      return await EAN13Info.create(code);
+      return EAN13Info.fromCode(code);
     } else if (fmt == 'ITF' || fmt == 'INTERLEAVED2OF5') {
       return ItfInfo(code);
     } else if (fmt == 'MAXICODE') {
@@ -71,11 +71,11 @@ abstract class BarcodeInfo {
     } else if (fmt == 'PDF_417' || fmt == 'PDF417') {
       return Pdf417Info(code);
     } else if (fmt == 'QR_CODE' || fmt == 'QR') {
-      return await QrCodeInfo.create(code);
+      return QrCodeInfo.fromCode(code);
     } else if (fmt == 'RSS_14' || fmt == 'RSS14') {
       return Rss14Info(code);
     } else if (fmt == 'UPC_A' || fmt == 'UPCA') {
-      return await UPCAInfo.create(code);
+      return UPCAInfo(code);
     } else if (fmt == 'UPC_E' || fmt == 'UPCE') {
       return UPCEInfo(code);
     } else {
@@ -92,7 +92,7 @@ abstract class BarcodeInfo {
   /// string format => 'format,code'
   /// example:
   ///   'ean13,8801051262995'
-  static Future<BarcodeInfo> fromString(String value) async {
+  factory BarcodeInfo.fromString(String value) {
     if (value == null || value.isEmpty) return null;
 
     final idx = value.indexOf(',');

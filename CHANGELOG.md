@@ -1,4 +1,8 @@
 
+## 0.1.0 - 2020-12-09
+### Removed
+- remove asynchronous code
+
 ## 0.0.6 - 2020-12-09
 ### Added
 - add BarcodeInfo.toString()

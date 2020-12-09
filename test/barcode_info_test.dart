@@ -5,10 +5,10 @@ import 'package:barcode_info/barcode_info.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  test('로또6/45 QRCode parsing', () async {
+  test('로또6/45 QRCode parsing', () {
     const code =
         'http://m.dhlottery.co.kr/?v=0936m041720353943q071215303244m071113171829q010222253142m0414182731421050908394';
-    final BarcodeInfo barcode = await BarcodeInfo.create('QR_CODE', code);
+    final BarcodeInfo barcode = BarcodeInfo.create('QR_CODE', code);
     expect(barcode is Lotto645QrCodeInfo, true);
     final lottocode = barcode as Lotto645QrCodeInfo;
     expect(lottocode.drawNo, 936);
@@ -32,9 +32,9 @@ void main() {
     expect(lottocode.trNumber, 1050908394);
   });
 
-  test('BarcodeInfo.toString() <-> BarcodeInfo.fromString() test', () async {
+  test('BarcodeInfo.toString() <-> BarcodeInfo.fromString() test', () {
     const code = '12344567';
-    final BarcodeInfo barcode = await BarcodeInfo.create('ean8', code);
+    final BarcodeInfo barcode = BarcodeInfo.create('ean8', code);
     expect(barcode is Ean8Info, true);
     expect(barcode.toString(), 'ean8,12344567');
     final newBarcode = BarcodeInfo.fromString(barcode.toString());
