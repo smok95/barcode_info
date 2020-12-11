@@ -1,4 +1,8 @@
 
+## 0.1.1 - 2020-12-11
+### Fixed
+- fix BarCodeInfo.fromString()
+
 ## 0.1.0 - 2020-12-09
 ### Removed
 - remove asynchronous code

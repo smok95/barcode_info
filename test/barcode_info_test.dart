@@ -33,11 +33,19 @@ void main() {
   });
 
   test('BarcodeInfo.toString() <-> BarcodeInfo.fromString() test', () {
-    const code = '12344567';
-    final BarcodeInfo barcode = BarcodeInfo.create('ean8', code);
+    var code = '12344567';
+    var barcode = BarcodeInfo.create('ean8', code);
     expect(barcode is Ean8Info, true);
     expect(barcode.toString(), 'ean8,12344567');
-    final newBarcode = BarcodeInfo.fromString(barcode.toString());
+    var newBarcode = BarcodeInfo.fromString(barcode.toString());
     expect(newBarcode is Ean8Info, true);
+
+    code =
+        'http://m.dhlottery.co.kr/?v=0936m041720353943q071215303244m071113171829q010222253142m0414182731421050908394';
+    barcode = BarcodeInfo.create('qrcode', code);
+    expect(barcode.toString(),
+        'qrCode,http://m.dhlottery.co.kr/?v=0936m041720353943q071215303244m071113171829q010222253142m0414182731421050908394');
+    newBarcode = BarcodeInfo.fromString(barcode.toString());
+    expect(newBarcode is Lotto645QrCodeInfo, true);
   });
 }

@@ -42,7 +42,7 @@ abstract class BarcodeInfo {
   ///   - itf         : 'ITF' or 'INTERLEAVED2OF5'
   ///   - maxicode    : 'MAXICODE'
   ///   - pdf417      : 'PDF_417' or 'PDF417'
-  ///   - qrCode      : 'QR_CODE' or 'QR'
+  ///   - qrCode      : 'QR_CODE' or 'QR' or 'QRCODE'
   ///   - rss14       : 'RSS_14' or 'RSS14'
   ///   - upcA        : 'UPC_A' or 'UPCA'
   ///   - upcE        : 'UPC_E' or 'UPCE'
@@ -70,7 +70,7 @@ abstract class BarcodeInfo {
       return MaxicodeInfo(code);
     } else if (fmt == 'PDF_417' || fmt == 'PDF417') {
       return Pdf417Info(code);
-    } else if (fmt == 'QR_CODE' || fmt == 'QR') {
+    } else if (fmt == 'QRCODE' || fmt == 'QR_CODE' || fmt == 'QR') {
       return QrCodeInfo.fromCode(code);
     } else if (fmt == 'RSS_14' || fmt == 'RSS14') {
       return Rss14Info(code);
