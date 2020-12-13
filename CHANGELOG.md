@@ -1,4 +1,8 @@
 
+## 0.1.2 - 2020-12-13
+### Added
+- add BarcodeInfo.formatToString()
+
 ## 0.1.1 - 2020-12-11
 ### Fixed
 - fix BarCodeInfo.fromString()

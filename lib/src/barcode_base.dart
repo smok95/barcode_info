@@ -110,9 +110,13 @@ abstract class BarcodeInfo {
   /// Barcode value
   final String code;
 
+  String formatToString() {
+    return format.toString().split('.').last;
+  }
+
   @override
   String toString() {
-    return format.toString().split('.').last + ',' + code;
+    return formatToString() + ',' + code;
   }
 }
 
