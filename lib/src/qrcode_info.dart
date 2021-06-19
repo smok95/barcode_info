@@ -39,8 +39,8 @@ class Lotto645QrCodeInfo extends QrCodeInfo {
   ///
   /// 형식
   /// 복권수탁사업자url/?v=[0000][m/s/q/n][000000000000][m/s/q/n][000000000000][m/s/q/n][000000000000][m/s/q/n][000000000000][m/s/q/n][000000000000][0000000000]
-  static Lotto645QrCodeInfo tryParse(final String code) {
-    if (code == null || code.isEmpty) return null;
+  static Lotto645QrCodeInfo? tryParse(final String code) {
+    if (code.isEmpty) return null;
 
     // 로또6/45 수탁사업자 url여부 확인
     final baseUrls = [
@@ -71,7 +71,7 @@ class Lotto645QrCodeInfo extends QrCodeInfo {
     if (drawNo == null) return null;
     val = val.substring(6);
 
-    final games = List<Tuple2<int, Set<int>>>();
+    final games = <Tuple2<int, Set<int>>>[];
     for (var i = 0; i < 5; i++) {
       var s = val.substring(0, 13);
       val = val.substring(13);

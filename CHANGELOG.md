@@ -1,4 +1,11 @@
 
+## 0.2.0 - 2021-06-19
+### Changed
+- null safety 지원
+
+### Removed
+- CountryInfo null safety적용문제로 제거, 기존 프로젝트는 개별사용하는 방식으로 변경 필요.
+
 ## 0.1.2 - 2020-12-13
 ### Added
 - add BarcodeInfo.formatToString()

@@ -93,10 +93,10 @@ abstract class BarcodeInfo {
   /// example:
   ///   'ean13,8801051262995'
   factory BarcodeInfo.fromString(String value) {
-    if (value == null || value.isEmpty) return null;
-
     final idx = value.indexOf(',');
-    if (idx <= 0 || idx >= value.length - 1) return null;
+    if (idx <= 0 || idx >= value.length - 1) {
+      throw FormatException('unexpected format.');
+    }
 
     final format = value.substring(0, idx);
     final code = value.substring(idx + 1);

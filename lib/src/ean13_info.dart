@@ -13,13 +13,13 @@ class EAN13Info extends BarcodeInfo {
 
   /// GS1 prefix
   final String prefix;
-  final Set<String> countryCodes;
+  final Set<String>? countryCodes;
 }
 
 /// [GS1 Company Prefix](https://www.gs1.org/standards/id-keys/company-prefix)
 /// https://en.wikipedia.org/wiki/List_of_GS1_country_codes
-Set<String> countriesFromGS1Prefix(final String prefix) {
-  if (prefix == null || prefix.length != 3) return null;
+Set<String>? countriesFromGS1Prefix(final String prefix) {
+  if (prefix.length != 3) return null;
 
   /// link : [https://en.wikipedia.org/wiki/List_of_GS1_country_codes]
 
@@ -28,8 +28,8 @@ Set<String> countriesFromGS1Prefix(final String prefix) {
 
   /// description은 언어별로 다르게 표시해야하기 때문에 일단 링크만 설정하고
   /// 추후에 어떤값을 지정해야할지 고민한다.
-  String description =
-      'https://en.wikipedia.org/wiki/List_of_GS1_country_codes';
+  //String description =
+  //    'https://en.wikipedia.org/wiki/List_of_GS1_country_codes';
 
   /// [https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2]
   /// 위 리스트에 없는 경우 국가명
