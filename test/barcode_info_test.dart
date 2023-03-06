@@ -1,4 +1,6 @@
-import 'package:barcode_info/src/qrcode_info.dart';
+import 'dart:math';
+
+import 'package:barcode_info/src/isbn13_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:barcode_info/barcode_info.dart';
@@ -47,5 +49,20 @@ void main() {
         'qrCode,http://m.dhlottery.co.kr/?v=0936m041720353943q071215303244m071113171829q010222253142m0414182731421050908394');
     newBarcode = BarcodeInfo.fromString(barcode.toString());
     expect(newBarcode is Lotto645QrCodeInfo, true);
+  });
+
+  test('ISBN-13 test', () {
+    var code = '9788175257665';
+    final isISBN = EAN13Info.isISBN(code.substring(0, 3));
+    expect(isISBN, true);
+
+    var barcode = BarcodeInfo.create('isbn', code);
+    expect(barcode is ISBN13Info, true);
+    final isbn = barcode as ISBN13Info;
+    expect(isbn.ean, 978);
+    expect(isbn.group, 81);
+    expect(isbn.publisher, 7525);
+    expect(isbn.title, 766);
+    expect(isbn.checkDigit, 5);
   });
 }

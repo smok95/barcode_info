@@ -1,4 +1,5 @@
 import 'ean13_info.dart';
+import 'isbn13_info.dart';
 import 'qrcode_info.dart';
 import 'upca_info.dart';
 
@@ -22,6 +23,7 @@ enum BarcodeFormat {
   rss14,
   upcA,
   upcE,
+  isbn13,
 }
 
 abstract class BarcodeInfo {
@@ -46,6 +48,7 @@ abstract class BarcodeInfo {
   ///   - rss14       : 'RSS_14' or 'RSS14'
   ///   - upcA        : 'UPC_A' or 'UPCA'
   ///   - upcE        : 'UPC_E' or 'UPCE'
+  ///   - isbn        : 'ISBN' or 'ISBN13'
   static BarcodeInfo create(final String format, String code) {
     final fmt = format.toUpperCase();
     if (fmt == 'AZTEC') {
@@ -78,6 +81,8 @@ abstract class BarcodeInfo {
       return UPCAInfo(code);
     } else if (fmt == 'UPC_E' || fmt == 'UPCE') {
       return UPCEInfo(code);
+    } else if (fmt == 'ISBN' || fmt == 'ISBN13') {
+      return ISBN13Info.fromCode(code);
     } else {
       return BarcodeUnknown(code, format);
     }

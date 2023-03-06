@@ -11,6 +11,15 @@ class EAN13Info extends BarcodeInfo {
     return EAN13Info(code, prefix, countryCodes: countryCodes);
   }
 
+  static bool isISBN(String prefix) {
+    if (prefix.length != 3) return false;
+    final code = int.tryParse(prefix);
+    if (code == null) return false;
+    // "Bookland" (ISBN) - 979-0 used for sheet music
+    // ("Musicland", ISMN-13, replaces deprecated ISMN M-numbers)
+    return (978 <= code && code <= 979);
+  }
+
   /// GS1 prefix
   final String prefix;
   final Set<String>? countryCodes;

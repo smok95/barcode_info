@@ -1,4 +1,12 @@
 
+## 0.2.1 - 2023-03-06
+### Changed
+- barcode_widget: ^2.0.1 -> ^2.0.3
+- tuple: ^2.0.0 -> ^2.0.1
+
+### Added
+- isbn13_info 추가
+
 ## 0.2.0 - 2021-06-19
 ### Changed
 - null safety 지원
