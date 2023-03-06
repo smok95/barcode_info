@@ -66,7 +66,11 @@ abstract class BarcodeInfo {
     } else if (fmt == 'EAN_8' || fmt == 'EAN8') {
       return Ean8Info(code);
     } else if (fmt == 'EAN_13' || fmt == 'EAN13') {
-      return EAN13Info.fromCode(code);
+      var ean13 = EAN13Info.fromCode(code);
+      if (EAN13Info.isISBN(ean13.prefix)) {
+        return ISBN13Info.fromCode(code);
+      }
+      return ean13;
     } else if (fmt == 'ITF' || fmt == 'INTERLEAVED2OF5') {
       return ItfInfo(code);
     } else if (fmt == 'MAXICODE') {

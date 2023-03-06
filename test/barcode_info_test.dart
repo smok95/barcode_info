@@ -58,6 +58,10 @@ void main() {
 
     var barcode = BarcodeInfo.create('isbn', code);
     expect(barcode is ISBN13Info, true);
+
+    barcode = BarcodeInfo.create('ean13', code);
+    expect(barcode is ISBN13Info, true);
+
     final isbn = barcode as ISBN13Info;
     expect(isbn.ean, 978);
     expect(isbn.group, 81);
